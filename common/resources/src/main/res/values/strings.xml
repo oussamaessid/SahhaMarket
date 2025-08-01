@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">SahhaMarket</string>
+
+    <string name="txt_sahha">Sahha</string>
+    <string name="txt_market">Market</string>
+    <string name="txt_title_welcome_one">Amazing Deals &amp; Offers</string>
+    <string name="txt_title_welcome_two">Everyday Fresh &amp; Healthy</string>
+    <string name="txt_title_welcome_three">Deliver at Your Door</string>
+    <string name="txt_select_option">Select the option</string>
+    <string name="txt_phone_number">Phone Number</string>
+    <string name="txt_hint_phone_number">Enter Phone Number</string>
+    <string name="txt_choose_account">Please choose the account that suits you.</string>
+    <string name="txt_select_location">Select location</string>
+    <string name="txt_title_previous_order">Previous Order</string>
+    <string name="txt_title_similar_products">Similar products</string>
+    <string name="txt_title_recipes">Recipes</string>
+    <string name="txt_header_categories">Categories</string>
+    <string name="txt_title_related_recipes">Related recipes</string>
+    <string name="txt_header_popular_deals">Popular Deals</string>
+    <string name="txt_header_daily_receipt">Daily Receipt</string>
+    <string name="txt_hint_search">Search Anything…</string>
+    <string name="txt_product_back_soon">Back soon</string>
+    <string name="txt_invite_friends">Invite friends</string>
+    <string name="txt_desc_invite_friends">You get 5 SAR credit for every friend you invite on the app.</string>
+    <plurals name="txt_ingredients_count">
+        <item quantity="one">%d ingredient</item>
+        <item quantity="other">%d ingredients</item>
+    </plurals>
+
+    <string name="txt_sub_title_welcome_one">Find deals that are cheaper than local supermarket, great discount, and cash backs.</string>
+    <string name="txt_sub_title_welcome_two">Quickly search and select a wide range of products from everyday fresh and healthy grocery.</string>
+    <string name="txt_sub_title_welcome_three">Safe and fast delivery for your valuable groceries at your door without any hustle</string>
+    <string name="txt_bulk">Bulk</string>
+    <string name="txt_details">Details</string>
+    <string name="txt_welcome">Welcome</string>
+    <string name="txt_location_prompt">please enter your position to get the product near to you</string>
+    <string name="txt_back">Back</string>
+    <string name="txt_product_image">Product Image</string>
+    <string name="txt_bookmark">Bookmark</string>
+    <string name="txt_decrease_quantity">Decrease quantity</string>
+    <string name="txt_increase_quantity">Increase quantity</string>
+
+    <string name="txt_location_not_set">Location not set</string>
+    <string name="txt_location_description">Please share your location to get personalized recommendations.</string>
+    <string name="txt_add_location">Add Location</string>
+    <string name="txt_current_location">Current Location</string>
+    <string  name="txt_invite_friend">Invite friend character</string>
+    <string  name="txt_background_image_desc">Image Background</string>
+    <string name="txt_privacy_policy">Privacy Policy</string>
+    <string name="txt_order_description">Order item %d</string>
+    <string name="txt_more_items">+%d\nMore</string>
+    <string name="txt_order_id">Order ID: %s</string>
+    <string name="txt_final_total">Final Total: %s</string>
+    <string name="txt_see_all">See all</string>
+    <string name="txt_cooking_time">Cooking time: %s</string>
+    <string name="txt_product_description">Product description</string>
+    <string name="txt_view_product_description">View product description</string>
+    <string name="txt_price">%.2f %s</string>
+    <string name="txt_rating">%.1f/5</string>
+    <string name="txt_promo">%d%%  OFF</string>
+    <string name="txt_add_product_success">Product has been successfully added to your cart.</string>
+    <string name="txt_add_product_failure">A problem arose with the product\'s addition, please try again later.</string>
+    <string name="txt_price_package">%s %s</string>
+    <string name="currency_sar">SAR</string>
+
+    <string name="txt_btn_next">Next</string>
+    <string name="txt_btn_skip">Skip</string>
+    <string name="txt_btn_get_started">Let\'s Get Started</string>
+    <string name="txt_btn_add_location">Add location</string>
+    <string name="txt_btn_confirm_address">Confirm address</string>
+    <string name="txt_btn_order_again">Order Again</string>
+    <string name="txt_btn_invite_friends">Invite friends</string>
+    <string name="txt_btn_add_to_cart">Add to cart</string>
+    <string name="txt_btn_add_favorites">Add to favorites</string>
+
+    <string name="txt_location_title">Location</string>
+    <string name="txt_add_new_address_title">AddNew Address</string>
+    <string name="txt_option_title">Option</string>
+    <string name="txt_language_title">Language</string>
+    <string name="txt_notification_title">Notification</string>
+    <string name="txt_product_details_title">Vegetables</string>
+    <string name="txt_recipe_details_title">Related Recipes</string>
+
+    <string name="txt_lang_en">Eng</string>
+    <string name="txt_lang_ar">Arb</string>
+
+    <string name="txt_error_loading_product">Failed to load product details</string>
+    <string name="txt_error_loading_similar_products">Failed to load similar products</string>
+    <string name="txt_error_loading_recipes">Failed to load recipes</string>
+    <string name="txt_error_loading_previous_order">Failed to load previous order</string>
+</resources>
