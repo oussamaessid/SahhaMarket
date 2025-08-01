@@ -57,7 +57,7 @@ import kotlinx.coroutines.flow.collectLatest
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
     goToRecipesDetailScreen: (String) -> Unit,
-    goToProductDetailScreen: (String) -> Unit,
+    goToProductDetailScreen: (Long) -> Unit,
 ) {
     val context = LocalContext.current
     val state by viewModel.stateHome.collectAsStateWithLifecycle()
@@ -98,7 +98,7 @@ fun HomeContent(
     onAddProductToCart: (Product) -> Unit,
     onAddQuantity: (Product) -> Unit,
     onLessQuantity: (Product) -> Unit,
-    onProductClicked: (String) -> Unit,
+    onProductClicked: (Long) -> Unit,
     onRecipeClicked: (String) -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
@@ -215,7 +215,7 @@ fun HomeContent(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .clickable {
-                                            onProductClicked(product.id.toString())
+                                            onProductClicked(product.id)
                                         }
                                 )
                             }

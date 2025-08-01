@@ -55,7 +55,7 @@ fun SimilarProductsSection(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = stringResource(id = R.string.txt_title_similar_products),
+                text = stringResource(id = R.string.txt_header_similar_products),
                 style = MaterialTheme.typography.titleMedium
             )
             Text(

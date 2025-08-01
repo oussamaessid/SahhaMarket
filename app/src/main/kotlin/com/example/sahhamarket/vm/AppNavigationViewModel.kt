@@ -94,7 +94,7 @@ class AppNavigationViewModel @Inject constructor(
 
         RouteScreen.Profile -> AppTopBarUiModel(isVisible = false, isBottomBarVisible = true)
 
-        RouteScreen.ProductDetailScreen -> AppTopBarUiModel(
+        is RouteScreen.ProductDetailScreen -> AppTopBarUiModel(
             navigation = R.drawable.ic_back,
             titleResId = R.string.txt_product_details_title,
             isVisible = true,

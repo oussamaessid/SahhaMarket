@@ -33,6 +33,7 @@ dependencies {
     /***** dagger hilt *****/
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.billing.ktx)
     kapt(libs.hilt.android.compiler)
     /***** Google map *****/
     implementation(libs.play.services.maps)

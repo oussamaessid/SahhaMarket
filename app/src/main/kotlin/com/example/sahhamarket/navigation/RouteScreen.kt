@@ -37,7 +37,9 @@ sealed interface RouteScreen {
     data object Packages : RouteScreen
 
     @Serializable
-    data object ProductDetailScreen : RouteScreen
+    data class ProductDetailScreen(
+        val productId: Long
+    ) : RouteScreen
 
     @Serializable
     data object RecipesDetailScreen : RouteScreen

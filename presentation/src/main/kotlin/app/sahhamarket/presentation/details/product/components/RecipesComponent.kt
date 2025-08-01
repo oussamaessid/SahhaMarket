@@ -37,7 +37,7 @@ fun RelatedRecipesSection(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = stringResource(id = R.string.txt_title_related_recipes),
+                text = stringResource(id = R.string.txt_header_related_recipes),
                 style = MaterialTheme.typography.titleMedium
             )
             Text(

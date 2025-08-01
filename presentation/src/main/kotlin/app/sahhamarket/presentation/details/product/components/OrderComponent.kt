@@ -55,7 +55,7 @@ fun PreviousOrderSection(
 
     Column(modifier = modifier) {
         Text(
-            text = stringResource(id = R.string.txt_title_previous_order),
+            text = stringResource(id = R.string.txt_header_previous_order),
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.padding(bottom = spacing.s)
         )

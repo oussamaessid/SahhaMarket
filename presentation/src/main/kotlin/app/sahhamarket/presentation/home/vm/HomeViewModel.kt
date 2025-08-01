@@ -196,13 +196,13 @@ class HomeViewModel @Inject constructor(
         data object InitData : UiAction
         data class AddProduct(val product: Product) : UiAction
         data class LessQuantityProduct(val product: Product) : UiAction
-        data class NavigateToProductDetail(val productId: String) : UiAction
+        data class NavigateToProductDetail(val productId: Long) : UiAction
         data class NavigateToRecipeDetail(val recipeId: String) : UiAction
     }
 
     sealed interface UiEvent {
         data class AddProductToCart(val message: Int) : UiEvent
-        data class NavigateToProductDetail(val productId: String) : UiEvent
+        data class NavigateToProductDetail(val productId: Long) : UiEvent
         data class NavigateToRecipeDetail(val recipeId: String) : UiEvent
     }
 

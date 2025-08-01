@@ -17,7 +17,7 @@ interface ProductDao {
     fun getProducts(): Flow<List<ProductEntity>>
 
     @Query("SELECT * FROM productentity WHERE id=:productId")
-    suspend fun getProductById(productId: Long): ProductEntity
+    fun getProductById(productId: Long): Flow<ProductEntity?>
 
     @Query("SELECT EXISTS(SELECT 1 FROM productentity WHERE id = :productId)")
     suspend fun checkProductExists(productId: Long): Boolean

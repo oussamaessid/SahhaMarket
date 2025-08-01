@@ -11,13 +11,13 @@
     <string name="txt_hint_phone_number">Enter Phone Number</string>
     <string name="txt_choose_account">Please choose the account that suits you.</string>
     <string name="txt_select_location">Select location</string>
-    <string name="txt_title_previous_order">Previous Order</string>
-    <string name="txt_title_similar_products">Similar products</string>
     <string name="txt_title_recipes">Recipes</string>
     <string name="txt_header_categories">Categories</string>
-    <string name="txt_title_related_recipes">Related recipes</string>
+    <string name="txt_header_related_recipes">Related recipes</string>
     <string name="txt_header_popular_deals">Popular Deals</string>
     <string name="txt_header_daily_receipt">Daily Receipt</string>
+    <string name="txt_header_similar_products">Similar products</string>
+    <string name="txt_header_previous_order">Previous Order</string>
     <string name="txt_hint_search">Search Anything…</string>
     <string name="txt_product_back_soon">Back soon</string>
     <string name="txt_invite_friends">Invite friends</string>

@@ -15,6 +15,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import androidx.navigation.toRoute
 import app.sahhamarket.presentation.auth.ui.OtpScreen
 import app.sahhamarket.presentation.cart.ui.Cart
 import app.sahhamarket.presentation.details.product.ui.ProductDetailScreen
@@ -114,12 +115,8 @@ private fun NavGraphBuilder.productDetailScreen(
     navController: NavHostController,
     appNavigationViewModel: AppNavigationViewModel
 ) {
-    composable(
-        route = "${RouteScreen.ProductDetailScreen}/{productId}",
-        arguments = listOf(navArgument("productId") { })
-    ) { navBackStackEntry ->
-        val productId = navBackStackEntry.arguments?.getString("productId")
-        appNavigationViewModel.processAction(AppNavigationViewModel.UiAction.OnRouteChanged(RouteScreen.ProductDetailScreen))
+    composable<RouteScreen.ProductDetailScreen> { backStackEntry ->
+        val productId = backStackEntry.toRoute<RouteScreen.ProductDetailScreen>().productId
         ProductDetailScreen(productId = productId)
     }
 }
@@ -181,11 +178,8 @@ private fun NavGraphBuilder.homeScreen(
                     launchSingleTop = true
                 }
             },
-            goToProductDetailScreen = { id ->
-                navController.navigate("${RouteScreen.ProductDetailScreen}/$id") {
-                    popUpTo(RouteScreen.Home) { inclusive = false }
-                    launchSingleTop = true
-                }
+            goToProductDetailScreen = { productId ->
+                navController.navigate(RouteScreen.ProductDetailScreen(productId = productId))
             }
         )
     }
