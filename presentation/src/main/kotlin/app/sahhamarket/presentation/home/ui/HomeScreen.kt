@@ -12,15 +12,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -111,13 +108,16 @@ fun HomeContent(
     onRecipeClicked: (String) -> Unit,
     onNavigateToCategoryScreen: () -> Unit,
 ) {
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = White)
+    ) {
         LazyColumn {
             if (state.currentAddress != null) {
                 item {
                     LocationContent(
                         address = state.currentAddress,
-                        modifier = Modifier.background(color = White),
                         onLocationClicked = {}
                     )
                 }
@@ -125,23 +125,18 @@ fun HomeContent(
             item {
                 SearchBarContent(
                     modifier = Modifier
-                        .background(color = White)
                         .padding(vertical = MaterialTheme.spacing.s),
                     onSearch = {}
                 )
             }
+
             item {
                 HeaderSectionContent(
                     title = stringResource(R.string.txt_header_categories),
-                    modifier = Modifier
-                        .background(color = White)
-                        .padding(vertical = MaterialTheme.spacing.s),
+                    modifier = Modifier.padding(vertical = MaterialTheme.spacing.s),
                     onSeeAllClicked = onNavigateToCategoryScreen
                 )
-            }
 
-            item {
-                var selectedIndex by remember { mutableIntStateOf(0) }
                 when (val data = state.categories) {
                     is CategoryUiModel.Loading -> {}
                     is CategoryUiModel.Error -> {}
@@ -149,18 +144,16 @@ fun HomeContent(
                         LazyRow(
                             contentPadding = PaddingValues(MaterialTheme.spacing.s),
                             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.s),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .background(color = White)
+                            modifier = Modifier.fillMaxWidth()
                         ) {
-                            itemsIndexed(data.categories) { index, category ->
+                            items(data.categories) { category ->
                                 CategoryContent(
                                     category = category,
-                                    isSelected = index == selectedIndex,
-                                    modifier = Modifier.clickable {
-                                        selectedIndex = index
-                                        onCategoryClicked(category.id)
-                                    }
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clickable {
+                                            onCategoryClicked(category.id)
+                                        }
                                 )
                             }
                         }

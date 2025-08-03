@@ -117,7 +117,7 @@ class HomeViewModel @Inject constructor(
         _stateHome.update { state ->
             state.copy(
                 categories = getCategoriesUseCase().fold(
-                    onSuccess = { CategoryUiModel.Success(it) },
+                    onSuccess = { CategoryUiModel.Success(it.take(3)) },
                     onFailure = { CategoryUiModel.Error }
                 )
             )

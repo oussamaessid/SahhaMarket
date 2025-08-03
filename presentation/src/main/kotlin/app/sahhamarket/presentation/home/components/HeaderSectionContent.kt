@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import app.sahhamarket.compose.theme.Black
-import app.sahhamarket.compose.theme.FountainBlue
+import app.sahhamarket.compose.theme.ScarpaFlow
 import app.sahhamarket.compose.theme.spacing
 import app.sahhamarket.resources.R
 
@@ -37,7 +37,7 @@ fun HeaderSectionContent(
         Text(
             text = stringResource(R.string.txt_see_all),
             style = MaterialTheme.typography.bodySmall,
-            color = FountainBlue,
+            color = ScarpaFlow,
             modifier = Modifier.clickable {
                 onSeeAllClicked?.invoke()
             }

@@ -18,26 +18,32 @@ class CategoriesRepositoryImpl @Inject constructor(
 private val categories = listOf(
     CategoryDto(
         id = 1L,
-        imageUrl = "file:///android_asset/ic_packages.svg",
+        imageUrl = "file:///android_asset/ic_category_packs.png",
         title = "Packages",
-        colorBg = Color.parseColor("#4AB7B6")
+        colorBg = Color.parseColor("#D3B0E0")
     ),
     CategoryDto(
-        id = 1L,
-        imageUrl = "file:///android_asset/ic_fruits.svg",
+        id = 2L,
+        imageUrl = "file:///android_asset/ic_category_fruits.png",
         title = "Fruits",
-        colorBg = Color.parseColor("#4B9DCB")
+        colorBg = Color.parseColor("#F8A44C")
     ),
     CategoryDto(
-        id = 1L,
-        imageUrl = "file:///android_asset/ic_vegetables.svg",
+        id = 3L,
+        imageUrl = "file:///android_asset/ic_category_vegetables.png",
         title = "Vegetables",
-        colorBg = Color.parseColor("#BB6E9D")
+        colorBg = Color.parseColor("#53B175")
     ),
     CategoryDto(
-        id = 1L,
-        imageUrl = "file:///android_asset/ic_drinks.svg",
-        title = "Drinks",
-        colorBg = Color.parseColor("#4B9DCB")
+        id = 4L,
+        imageUrl = "file:///android_asset/ic_category_organic_products.png",
+        title = "Organic Products",
+        colorBg = Color.parseColor("#F7A593")
+    ),
+    CategoryDto(
+        id = 5L,
+        imageUrl = "file:///android_asset/ic_category_recipes.png",
+        title = "Recipes",
+        colorBg = Color.parseColor("#E2C572")
     ),
 )
