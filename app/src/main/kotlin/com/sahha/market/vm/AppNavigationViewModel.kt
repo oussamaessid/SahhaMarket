@@ -35,7 +35,7 @@ class AppNavigationViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             if (preferenceStorage.getIsFirstInstall().not()) {
-                _startDestinationState.value = RouteScreen.Onboarding
+                _startDestinationState.value = RouteScreen.Welcome
             } else {
                 _startDestinationState.value = RouteScreen.Option
             }

@@ -29,5 +29,12 @@ class GetOnboardingUseCase @Inject constructor() {
                     subTitle = R.string.txt_sub_title_welcome_three
                 )
             )
+            add(
+                OnboardingInfo(
+                    image = R.drawable.ic_welcome_4,
+                    title = R.string.txt_title_welcome_three,
+                    subTitle = R.string.txt_sub_title_welcome_three
+                )
+            )
         }
 }

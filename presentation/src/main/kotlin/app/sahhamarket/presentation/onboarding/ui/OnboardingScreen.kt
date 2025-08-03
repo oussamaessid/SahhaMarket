@@ -1,5 +1,6 @@
 package app.sahhamarket.presentation.onboarding.ui
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PageSize
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -23,6 +25,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -31,9 +34,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.sahhamarket.compose.components.HorizontalPagerIndicator
+import app.sahhamarket.compose.theme.Black
 import app.sahhamarket.compose.theme.DustyGray
 import app.sahhamarket.compose.theme.FountainBlue
-import app.sahhamarket.compose.theme.TexasRose
 import app.sahhamarket.compose.theme.White
 import app.sahhamarket.compose.theme.spacing
 import app.sahhamarket.domain.model.OnboardingInfo
@@ -44,15 +47,15 @@ import kotlinx.coroutines.launch
 @Composable
 fun OnboardingScreen(
     viewModel: OnboardingViewModel = hiltViewModel(),
-    goToWelcomeScreen: () -> Unit,
+    goToOptionScreen: () -> Unit,
 ) {
     val state by viewModel.stateWelcome.collectAsStateWithLifecycle()
 
     OnboardingContent(
         state = state,
-        goToLocationScreen = {
-            viewModel.processAction(OnboardingViewModel.UiAction.GoToLocationScreen)
-            goToWelcomeScreen()
+        goToOptionScreen = {
+            viewModel.processAction(OnboardingViewModel.UiAction.GoToOptionScreen)
+            goToOptionScreen()
         }
     )
 }
@@ -60,7 +63,7 @@ fun OnboardingScreen(
 @Composable
 fun OnboardingContent(
     state: OnboardingViewModel.UiState,
-    goToLocationScreen: () -> Unit,
+    goToOptionScreen: () -> Unit,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState { state.welcomeInfoList.size }
@@ -83,63 +86,86 @@ fun OnboardingContent(
             OnboardingInfoPage(welcomeInfo = state.welcomeInfoList[index])
         }
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(
-                    horizontal = MaterialTheme.spacing.l,
-                    vertical = MaterialTheme.spacing.s,
+        AnimatedVisibility(visible = isLastPage) {
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        horizontal = MaterialTheme.spacing.l,
+                        vertical = MaterialTheme.spacing.s,
+                    ),
+                shape = MaterialTheme.shapes.extraLarge,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = FountainBlue,
+                    contentColor = White
                 ),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Box(
-                modifier = Modifier.weight(1f),
-                contentAlignment = Alignment.CenterStart
+                onClick = goToOptionScreen
             ) {
-                TextButton(
-                    colors = ButtonDefaults.textButtonColors(contentColor = DustyGray),
-                    onClick = goToLocationScreen
-                ) {
-                    Text(
-                        text = stringResource(R.string.txt_btn_skip),
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
-                }
-            }
-
-            Box(
-                modifier = Modifier.weight(1f),
-                contentAlignment = Alignment.Center
-            ) {
-                HorizontalPagerIndicator(
-                    pageCount = state.welcomeInfoList.size,
-                    currentPage = pagerState.currentPage,
+                Text(
+                    text = stringResource(R.string.txt_btn_let_get_started),
+                    style = MaterialTheme.typography.headlineLarge,
+                    color = Color.White,
+                    modifier = Modifier.padding(vertical = MaterialTheme.spacing.xs)
                 )
             }
+        }
 
-            Box(
-                modifier = Modifier.weight(1f),
-                contentAlignment = Alignment.CenterEnd
+        AnimatedVisibility(visible = isLastPage.not()) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        horizontal = MaterialTheme.spacing.l,
+                        vertical = MaterialTheme.spacing.s,
+                    ),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                TextButton(
-                    colors = ButtonDefaults.textButtonColors(contentColor = FountainBlue),
-                    onClick = {
-                        if (isLastPage) {
-                            goToLocationScreen()
-                        } else {
+                Box(
+                    modifier = Modifier.weight(1f),
+                    contentAlignment = Alignment.CenterStart
+                ) {
+                    TextButton(
+                        colors = ButtonDefaults.textButtonColors(contentColor = DustyGray),
+                        onClick = goToOptionScreen
+                    ) {
+                        Text(
+                            text = stringResource(R.string.txt_btn_skip),
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    }
+                }
+
+                Box(
+                    modifier = Modifier.weight(1f),
+                    contentAlignment = Alignment.Center
+                ) {
+                    HorizontalPagerIndicator(
+                        pageCount = state.welcomeInfoList.size,
+                        currentPage = pagerState.currentPage,
+                    )
+                }
+
+                Box(
+                    modifier = Modifier.weight(1f),
+                    contentAlignment = Alignment.CenterEnd
+                ) {
+                    TextButton(
+                        colors = ButtonDefaults.textButtonColors(contentColor = FountainBlue),
+                        onClick = {
                             coroutineScope.launch {
                                 pagerState.animateScrollToPage(pagerState.currentPage + 1)
                             }
                         }
+                    ) {
+                        Text(
+                            text = stringResource(R.string.txt_btn_next),
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
                     }
-                ) {
-                    Text(
-                        text = stringResource(R.string.txt_btn_next),
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
                 }
             }
         }
+
     }
 }
 
@@ -152,23 +178,6 @@ fun OnboardingInfoPage(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.fillMaxWidth()
     ) {
-//        Text(
-//            text = buildAnnotatedString {
-//                withStyle(style = SpanStyle(color = TexasRose)) {
-//                    append(stringResource(R.string.txt_sahha))
-//                }
-//                withStyle(style = SpanStyle(color = FountainBlue)) {
-//                    append(stringResource(R.string.txt_market))
-//                }
-//            },
-//            style = MaterialTheme.typography.displayLarge,
-//            textAlign = TextAlign.Center,
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .weight(1F)
-//                .padding(top = MaterialTheme.spacing.l)
-//        )
-
         Image(
             painterResource(welcomeInfo.image),
             contentDescription = null,
@@ -178,7 +187,7 @@ fun OnboardingInfoPage(
             text = stringResource(welcomeInfo.title),
             style = MaterialTheme.typography.displayMedium,
             textAlign = TextAlign.Center,
-            color = TexasRose,
+            color = Black,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(
@@ -229,6 +238,6 @@ fun OnboardingContentPreview() {
                 )
             )
         ),
-        goToLocationScreen = {},
+        goToOptionScreen = {},
     )
 }

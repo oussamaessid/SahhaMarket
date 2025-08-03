@@ -282,7 +282,7 @@ private fun NavGraphBuilder.optionScreen(navController: NavHostController) {
 private fun NavGraphBuilder.welcomeScreen(navController: NavHostController) {
     composable<RouteScreen.Welcome> {
         WelcomeScreen{
-            navController.navigate(RouteScreen.Option)
+            navController.navigate(RouteScreen.Onboarding)
         }
     }
 }
@@ -290,7 +290,7 @@ private fun NavGraphBuilder.welcomeScreen(navController: NavHostController) {
 private fun NavGraphBuilder.onboardingScreen(navController: NavHostController) {
     composable<RouteScreen.Onboarding> {
         OnboardingScreen {
-            navController.navigate(RouteScreen.Welcome)
+            navController.navigate(RouteScreen.Option)
         }
     }
 }

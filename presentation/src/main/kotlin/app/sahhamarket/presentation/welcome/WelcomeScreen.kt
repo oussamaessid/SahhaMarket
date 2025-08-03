@@ -1,12 +1,13 @@
 package app.sahhamarket.presentation.welcome
 
-import androidx.compose.foundation.Image
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -14,46 +15,52 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
+import app.sahhamarket.compose.theme.Black
 import app.sahhamarket.compose.theme.DustyGray
 import app.sahhamarket.compose.theme.FountainBlue
 import app.sahhamarket.compose.theme.TexasRose
 import app.sahhamarket.compose.theme.White
 import app.sahhamarket.compose.theme.spacing
+import app.sahhamarket.compose.util.dpToPxF
 import app.sahhamarket.resources.R
 
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB_MR2)
 @Composable
-fun WelcomeScreen(goToOptionScreen: () -> Unit) {
+fun WelcomeScreen(goToOnboardingScreen: () -> Unit) {
+    val screenHeightPx = LocalConfiguration.current.screenHeightDp.dpToPxF
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(
+                brush = Brush.linearGradient(
+                    colors = listOf(TexasRose.copy(alpha = .2f), White),
+                    start = Offset(0f, 0f),
+                    end = Offset(0f, screenHeightPx / 2.5F)
+                ),
+            )
+            .paint(painter = painterResource(R.drawable.ic_bg_welcome))
             .padding(MaterialTheme.spacing.l),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Top
     ) {
-        Image(
-            painter = painterResource(R.drawable.welcome_illustration),
-            contentDescription = null,
-            modifier = Modifier
-                .size(300.dp)
-                .padding(bottom = MaterialTheme.spacing.l)
-        )
-
         Text(
             text = stringResource(R.string.txt_title_welcome),
             style = MaterialTheme.typography.displayMedium,
             textAlign = TextAlign.Center,
-            color = TexasRose,
+            color = Black,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(
                     top = MaterialTheme.spacing.l,
-                    bottom = MaterialTheme.spacing.s,
+                    bottom = MaterialTheme.spacing.m,
                 )
         )
 
@@ -61,9 +68,6 @@ fun WelcomeScreen(goToOptionScreen: () -> Unit) {
             text = stringResource(R.string.txt_sub_title_welcome),
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center,
-            maxLines = 3,
-            minLines = 3,
-            overflow = TextOverflow.Ellipsis,
             color = DustyGray,
             modifier = Modifier
                 .fillMaxWidth()
@@ -81,12 +85,12 @@ fun WelcomeScreen(goToOptionScreen: () -> Unit) {
                     horizontal = MaterialTheme.spacing.l,
                     vertical = MaterialTheme.spacing.s,
                 ),
-            shape = MaterialTheme.shapes.medium,
+            shape = MaterialTheme.shapes.extraLarge,
             colors = ButtonDefaults.buttonColors(
                 containerColor = FountainBlue,
                 contentColor = White
             ),
-            onClick = goToOptionScreen
+            onClick = goToOnboardingScreen
         ) {
             Text(
                 text = stringResource(R.string.txt_btn_get_started),

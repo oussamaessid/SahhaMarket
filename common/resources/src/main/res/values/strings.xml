@@ -7,7 +7,11 @@
     <string name="txt_title_welcome_two">Everyday Fresh &amp; Healthy</string>
     <string name="txt_title_welcome_three">Deliver at Your Door</string>
     <string name="txt_title_recipes">Recipes</string>
-    <string name="txt_title_welcome">Welcome to the app</string>
+    <string name="txt_title_welcome">Get fresh fruits and vegetables delivered to your door</string>
+    <string name="txt_sub_title_welcome">The best delivery app in town for delivering your daily fresh groceries</string>
+    <string name="txt_sub_title_welcome_one">Find deals that are cheaper than local supermarket, great discount, and cash backs.</string>
+    <string name="txt_sub_title_welcome_two">Quickly search and select a wide range of products from everyday fresh and healthy grocery.</string>
+    <string name="txt_sub_title_welcome_three">Safe and fast delivery for your valuable groceries at your door without any hustle</string>
     <string name="txt_select_option">Select the option</string>
     <string name="txt_phone_number">Phone Number</string>
     <string name="txt_hint_phone_number">Enter Phone Number</string>
@@ -28,10 +32,6 @@
         <item quantity="other">%d ingredients</item>
     </plurals>
 
-    <string name="txt_sub_title_welcome_one">Find deals that are cheaper than local supermarket, great discount, and cash backs.</string>
-    <string name="txt_sub_title_welcome_two">Quickly search and select a wide range of products from everyday fresh and healthy grocery.</string>
-    <string name="txt_sub_title_welcome_three">Safe and fast delivery for your valuable groceries at your door without any hustle</string>
-    <string name="txt_sub_title_welcome">We’re excited to connect you directly with high-quality produce, whether you’re buying for your home or your business.</string>
     <string name="txt_bulk">Bulk</string>
     <string name="txt_details">Details</string>
     <string name="txt_welcome">Welcome</string>
@@ -67,7 +67,8 @@
 
     <string name="txt_btn_next">Next</string>
     <string name="txt_btn_skip">Skip</string>
-    <string name="txt_btn_get_started">Let\'s Get Started</string>
+    <string name="txt_btn_let_get_started">Let\'s Get Started</string>
+    <string name="txt_btn_get_started">Get Started</string>
     <string name="txt_btn_add_location">Add location</string>
     <string name="txt_btn_confirm_address">Confirm address</string>
     <string name="txt_btn_order_again">Order Again</string>

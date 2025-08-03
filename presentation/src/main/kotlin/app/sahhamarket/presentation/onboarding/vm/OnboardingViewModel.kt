@@ -27,7 +27,7 @@ class OnboardingViewModel @Inject constructor(
     fun processAction(action: UiAction) {
         viewModelScope.launch {
             when (action) {
-                is UiAction.GoToLocationScreen -> {
+                is UiAction.GoToOptionScreen -> {
                     preferenceStorage.setIsFirstInstall()
                 }
             }
@@ -39,6 +39,6 @@ class OnboardingViewModel @Inject constructor(
     )
 
     sealed interface UiAction {
-        data object GoToLocationScreen : UiAction
+        data object GoToOptionScreen : UiAction
     }
 }
