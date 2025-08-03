@@ -62,7 +62,7 @@ sealed interface RouteScreen {
     ) : RouteScreen
 
     @Serializable
-    data class ProductScreen(val categoryId: Long = 0L) : RouteScreen
+    data object ProductScreen : RouteScreen
 
     companion object {
         val serializersBySealedClass by lazy {

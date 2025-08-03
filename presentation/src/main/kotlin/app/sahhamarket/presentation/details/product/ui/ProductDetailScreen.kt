@@ -59,7 +59,7 @@ import app.sahhamarket.domain.model.ProductDetails
 import app.sahhamarket.presentation.details.product.vm.ProductDetailsViewModel
 import app.sahhamarket.presentation.home.components.DailyReceiptContent
 import app.sahhamarket.presentation.home.components.HeaderSectionContent
-import app.sahhamarket.presentation.home.components.ProductContent
+import app.sahhamarket.presentation.product.components.ProductContent
 import app.sahhamarket.resources.R
 import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
@@ -81,9 +81,7 @@ fun ProductDetailScreen(
         state = state,
         onAddProductToCart = {
             viewModel.processAction(
-                ProductDetailsViewModel.UiAction.AddProduct(
-                    it
-                )
+                ProductDetailsViewModel.UiAction.AddProduct(it)
             )
         },
         onAddQuantity = { viewModel.processAction(ProductDetailsViewModel.UiAction.AddProduct(it)) },
@@ -122,73 +120,6 @@ fun ProductDetailContent(
             }
         }
     }
-
-    /**
-    Column(
-    modifier = Modifier
-    .fillMaxSize()
-    .background(White)
-    .verticalScroll(rememberScrollState())
-    ) {
-    Column(modifier = Modifier.padding(vertical = spacing.xs, horizontal = spacing.s)) {
-
-
-
-    Spacer(modifier = Modifier.height(spacing.m))
-
-    Row(
-    modifier = Modifier
-    .fillMaxWidth()
-    .clickable { /* Handle expand */ }
-    .padding(vertical = spacing.ms),
-    horizontalArrangement = Arrangement.SpaceBetween,
-    verticalAlignment = Alignment.CenterVertically
-    ) {
-    Text(
-    text = stringResource(id = R.string.txt_product_description),
-    style = MaterialTheme.typography.titleMedium
-    )
-    Icon(
-    painter = painterResource(id = R.drawable.arrowright),
-    contentDescription = stringResource(id = R.string.txt_view_product_description),
-    tint = Black60,
-    modifier = Modifier
-    .size(spacing.m)
-    .clickable { }
-    )
-    }
-
-    HorizontalDivider(color = Alto)
-
-    Spacer(modifier = Modifier.height(spacing.m))
-
-    SimilarProductsSection(
-    products = similarProducts,
-    onSeeAllClick = { /* Handle see all similar products */ },
-    onProductClick = onSimilarProductClick,
-    onAddToCartClick = { product -> /* Handle add similar product to cart */ }
-    )
-
-    Spacer(modifier = Modifier.height(spacing.l))
-
-    RelatedRecipesSection(
-    recipes = relatedRecipes,
-    onSeeAllClick = { /* Handle see all recipes */ },
-    onRecipeClick = onRecipeClick,
-    onFavoriteClick = { recipe, isFavorite -> /* Handle favorite */ }
-    )
-
-    Spacer(modifier = Modifier.height(spacing.l))
-
-    PreviousOrderSection(
-    order = previousOrder,
-    onOrderAgainClick = onOrderAgain
-    )
-
-    Spacer(modifier = Modifier.height(spacing.l))
-    }
-    }
-     **/
 }
 
 @Composable
@@ -392,7 +323,10 @@ private fun ProductDetailsContent(
                     items(similarProducts) { product ->
                         ProductContent(
                             product = product,
-                            modifier = Modifier.clickable {}
+                            modifier = Modifier,
+                            onAddToCart = onAddProductToCart,
+                            onAddQuantity = onAddProductToCart,
+                            onLessQuantity = onLessQuantity
                         )
                     }
                 }

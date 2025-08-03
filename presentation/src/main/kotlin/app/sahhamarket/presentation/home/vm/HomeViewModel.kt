@@ -137,15 +137,19 @@ class HomeViewModel @Inject constructor(
     }
 
     private suspend fun getProducts() {
-        _stateHome.update { it.copy(products = ProductUiModel.Loading) }
-        _stateHome.update { state ->
-            state.copy(
-                products = getProductsUseCase().fold(
-                    onSuccess = { ProductUiModel.Success(it) },
-                    onFailure = { ProductUiModel.Error }
-                )
-            )
-        }
+        getProductsUseCase()
+            .onStart { _stateHome.update { it.copy(products = ProductUiModel.Loading) } }
+            .catch { _stateHome.update { it.copy(products = ProductUiModel.Error) } }
+            .collectLatest { result ->
+                _stateHome.update { state ->
+                    state.copy(
+                        products = result.fold(
+                            onSuccess = { ProductUiModel.Success(it) },
+                            onFailure = { ProductUiModel.Error }
+                        )
+                    )
+                }
+            }
     }
 
     private suspend fun getPopularDeals() {

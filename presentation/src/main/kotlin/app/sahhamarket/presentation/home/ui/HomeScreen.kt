@@ -46,6 +46,7 @@ fun HomeScreen(
     goToRecipesDetailScreen: (String) -> Unit,
     goToProductDetailScreen: (Long) -> Unit,
     goToCategoryScreen: () -> Unit,
+    goToProductsScreen: () -> Unit,
     goToSubcategoryScreen: (Long) -> Unit,
 ) {
     val context = LocalContext.current
@@ -92,7 +93,8 @@ fun HomeScreen(
         onRecipeClicked = { recipeId ->
             viewModel.processAction(HomeViewModel.UiAction.NavigateToRecipeDetail(recipeId))
         },
-        onNavigateToCategoryScreen = goToCategoryScreen
+        onNavigateToCategoryScreen = goToCategoryScreen,
+        onNavigateToProductsScreen = goToProductsScreen
     )
 }
 
@@ -106,6 +108,7 @@ fun HomeContent(
     onProductClicked: (Long) -> Unit,
     onRecipeClicked: (String) -> Unit,
     onNavigateToCategoryScreen: () -> Unit,
+    onNavigateToProductsScreen: () -> Unit,
 ) {
     Box(
         modifier = Modifier
@@ -172,69 +175,11 @@ fun HomeContent(
                 }
             }
 
-//            item {
-//                var selectedIndex by remember { mutableIntStateOf(0) }
-//                when (val data = state.subCategories) {
-//                    is SubCategoryUiModel.Loading -> {}
-//                    is SubCategoryUiModel.Error -> {}
-//                    is SubCategoryUiModel.Success -> {
-//                        LazyRow(
-//                            contentPadding = PaddingValues(horizontal = MaterialTheme.spacing.s),
-//                            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.s),
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .background(color = White),
-//                        ) {
-//                            itemsIndexed(data.subCategories) { index, subCategory ->
-//                                SubCategoryContent(
-//                                    subCategory = subCategory,
-//                                    isSelected = index == selectedIndex,
-//                                    modifier = Modifier.clickable {
-//                                        selectedIndex = index
-//                                    }
-//                                )
-//                            }
-//                        }
-//                        HorizontalDivider()
-//                    }
-//                }
-//            }
-//            item {
-//                when (val data = state.products) {
-//                    is ProductUiModel.Loading -> {}
-//                    is ProductUiModel.Error -> {}
-//                    is ProductUiModel.Success -> {
-//                        LazyHorizontalGrid(
-//                            rows = GridCells.Fixed(2),
-//                            contentPadding = PaddingValues(all = MaterialTheme.spacing.s),
-//                            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.s),
-//                            verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.s),
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .height(512.dp)
-//                                .background(color = White)
-//                        ) {
-//                            items(data.products.size) { index ->
-//                                val product = data.products[index]
-//                                ProductContent(
-//                                    product = product,
-//                                    modifier = Modifier
-//                                        .fillMaxWidth()
-//                                        .clickable {
-//                                             onProductClicked(product.id)
-//                                        }
-//                                )
-//                            }
-//                        }
-//                    }
-//                }
-//            }
             item {
                 HeaderSectionContent(
                     title = stringResource(R.string.txt_header_popular_deals),
-                    modifier = Modifier
-                        .background(color = White)
-                        .padding(vertical = MaterialTheme.spacing.s)
+                    modifier = Modifier.padding(vertical = MaterialTheme.spacing.s),
+                    onSeeAllClicked = onNavigateToProductsScreen
                 )
             }
             item {

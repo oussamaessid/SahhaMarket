@@ -58,7 +58,7 @@
     <string name="txt_product_description">Product description</string>
     <string name="txt_view_product_description">View product description</string>
     <string name="txt_price">%.2f %s</string>
-    <string name="txt_rating">%.1f/5</string>
+    <string name="txt_rating">%.1f (%d)</string>
     <string name="txt_promo">%d%%  OFF</string>
     <string name="txt_add_product_success">Product has been successfully added to your cart.</string>
     <string name="txt_add_product_failure">A problem arose with the product\'s addition, please try again later.</string>

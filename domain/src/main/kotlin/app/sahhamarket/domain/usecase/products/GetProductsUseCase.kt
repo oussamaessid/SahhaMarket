@@ -4,7 +4,8 @@ import app.sahhamarket.domain.model.Product
 import app.sahhamarket.domain.repository.ProductsRepository
 import app.sahhamarket.domain.util.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class GetProductsUseCase @Inject constructor(
@@ -12,7 +13,7 @@ class GetProductsUseCase @Inject constructor(
     private val productsRepository: ProductsRepository,
 ) {
 
-    suspend operator fun invoke(): Result<List<Product>> = withContext(ioDispatcher) {
-        productsRepository.getProducts()
+    operator fun invoke(): Flow<Result<List<Product>>> {
+        return productsRepository.getProducts().flowOn(ioDispatcher)
     }
 }

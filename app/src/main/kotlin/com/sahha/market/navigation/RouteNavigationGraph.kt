@@ -28,7 +28,7 @@ import app.sahhamarket.presentation.location.ui.LocationScreen
 import app.sahhamarket.presentation.onboarding.ui.OnboardingScreen
 import app.sahhamarket.presentation.option.ui.OptionScreen
 import app.sahhamarket.presentation.packages.ui.Packages
-import app.sahhamarket.presentation.product.ProductScreen
+import app.sahhamarket.presentation.product.ui.ProductsScreen
 import app.sahhamarket.presentation.profil.ui.Profile
 import app.sahhamarket.presentation.subcategory.ui.SubCategoryScreen
 import app.sahhamarket.presentation.welcome.WelcomeScreen
@@ -74,12 +74,7 @@ private fun NavGraphBuilder.productScreen(
     appNavigationViewModel: AppNavigationViewModel
 ) {
     composable<RouteScreen.ProductScreen> {
-        appNavigationViewModel.processAction(
-            AppNavigationViewModel.UiAction.OnRouteChanged(
-                RouteScreen.CategoryScreen
-            )
-        )
-        ProductScreen()
+        ProductsScreen()
     }
 }
 
@@ -88,7 +83,6 @@ private fun NavGraphBuilder.categoryScreen(
     appNavigationViewModel: AppNavigationViewModel
 ) {
     composable<RouteScreen.CategoryScreen> {
-        appNavigationViewModel.processAction(AppNavigationViewModel.UiAction.OnRouteChanged(RouteScreen.CategoryScreen))
         CategoryScreen()
     }
 }
@@ -101,7 +95,7 @@ private fun NavGraphBuilder.subcategoryScreen(
         SubCategoryScreen(
             onCategoryClicked = { categoryId ->
                 // Navigate to product screen with the subcategory ID
-                navController.navigate(RouteScreen.ProductScreen(categoryId = categoryId))
+                navController.navigate(RouteScreen.ProductScreen)
             }
         )
     }
@@ -152,7 +146,6 @@ private fun NavGraphBuilder.recipesDetailScreen(
         arguments = listOf(navArgument("id") { })
     ) { navBackStackEntry ->
         val receiptId = navBackStackEntry.arguments?.getString("id")
-        appNavigationViewModel.processAction(AppNavigationViewModel.UiAction.OnRouteChanged(RouteScreen.RecipesDetailScreen))
         RecipesDetailScreen(receiptId = receiptId, navController = navController)
     }
 }
@@ -217,7 +210,6 @@ private fun NavGraphBuilder.homeScreen(
                 { navController.navigate(RouteScreen.Notification) },
             )
         )
-        appNavigationViewModel.processAction(AppNavigationViewModel.UiAction.OnRouteChanged(RouteScreen.Home))
         HomeScreen(
             goToRecipesDetailScreen = { id ->
                 navController.navigate("${RouteScreen.RecipesDetailScreen}/$id") {
@@ -233,6 +225,9 @@ private fun NavGraphBuilder.homeScreen(
             },
             goToSubcategoryScreen = { categoryId ->
                 navController.navigate(RouteScreen.SubCategoryScreen(categoryId = categoryId))
+            },
+            goToProductsScreen = {
+                navController.navigate(RouteScreen.ProductScreen)
             }
         )
     }

@@ -22,10 +22,22 @@ class ProductsRepositoryImpl @Inject constructor(
     private val recipeMapper: RecipeMapper,
 ) : ProductsRepository {
 
-    override suspend fun getProducts(): Result<List<Product>> {
-        // TODO inject the repos and api
-        return Result.success(products.map { productMapper.toProduct(it) })
-    }
+    override fun getProducts(): Flow<Result<List<Product>>> = productDao.getProducts()
+        .map { localEntities ->
+            val localProducts = localEntities.map { productMapper.toProduct(it) }
+
+            val finalList = if (localProducts.isEmpty()) {
+                // ⚠️ Aucun produit en base → on montre les produits de l’API
+                products.map { productMapper.toProduct(it) }
+            } else {
+                // 🔁 Fusion : priorité au produit local s’il existe
+                products.map { remote ->
+                    localProducts.find { it.id == remote.id } ?: productMapper.toProduct(remote)
+                }
+            }
+
+            Result.success(finalList)
+        }
 
     override fun getProduct(productId: Long): Flow<Result<ProductDetails>> =
         productDao.getProductById(productId)

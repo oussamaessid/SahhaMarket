@@ -130,7 +130,7 @@ fun PopularDealsContent(
             )
 
             Text(
-                text = stringResource(R.string.txt_rating).format(product.rating.value),
+                text = stringResource(R.string.txt_rating).format(product.rating.value, product.rating.number),
                 style = MaterialTheme.typography.labelMedium,
                 color = BaliHai,
                 modifier = Modifier.padding(end = MaterialTheme.spacing.xxxs)
